@@ -47,7 +47,6 @@ public class Argument<T>{
 
     private ArrayList<Integer>  getIntArrayFromString(String str){
         ArrayList<Integer> arrayInt=new ArrayList<Integer>();
-
         if(str!=null){
             String[] tmp = str.split("\\,");
             for(int i=0;tmp!=null&&i<tmp.length;i++){
