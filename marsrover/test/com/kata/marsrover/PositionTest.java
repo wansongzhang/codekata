@@ -4,7 +4,6 @@ import com.kata.marsrover.exception.PositionException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
 /**
  * Created by sloanzhang on 2019/4/27.
@@ -31,17 +30,17 @@ public class PositionTest {
     }
 
     try {
-      new Position("1 S");
+      new Position("1 S 3");
       Assert.assertFalse(true);
     } catch (PositionException e) {
-      Assert.assertEquals("1 S", e.getMessage());
+      Assert.assertEquals("1 S 3", e.getMessage());
     }
 
     try {
-      new Position("1 2 T");
+      new Position("1 T S");
       Assert.assertFalse(true);
     } catch (PositionException e) {
-      Assert.assertEquals("1 2 T", e.getMessage());
+      Assert.assertEquals("1 T S", e.getMessage());
     }
   }
 }

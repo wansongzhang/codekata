@@ -32,7 +32,6 @@ public class FizzBuzz {
         for(int i=0;i<100;i++){
             sBuffer.append(gameString(i)).append(" ");
         }
-        System.out.println(sBuffer.toString());
         return sBuffer.toString();
     }
 }

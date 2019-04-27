@@ -12,9 +12,6 @@ public class Car {
   private MarsMap marsMap;
   private Position startPos, currentPos;
 
-  public Car() {
-  }
-
   public Car(int x, int y, char direction) {
     startPos = new Position(x, y, direction);
     currentPos = startPos;
@@ -28,11 +25,10 @@ public class Car {
 
 
   public String rover(String cmdLine) throws ActionException {
-    if (!isValidActionCmdStr(cmdLine.trim())) throw new ActionException(cmdLine);
-    char[] actionArray = cmdLine.trim().toCharArray();
     if (checkIsOutOfBoundary(currentPos)) {
       return currentPos.toString() + " RIP";
     }
+    char[] actionArray = cmdLine.trim().toCharArray();
     for (char action : actionArray) {
       if (checkRipPosAction(currentPos, action)) continue;
       Position lastPos = currentPos;
@@ -44,13 +40,6 @@ public class Car {
     }
     return currentPos.toString();
   }
-
-
-  boolean isValidActionCmdStr(String cmdLine) {
-    if (cmdLine == null || cmdLine.trim().isEmpty()) return false;
-    return cmdLine.matches("[LRM]+");
-  }
-
 
   Position executeAction(char action) throws ActionException {
     return CarActionFactory.getCarAction(action).execute(currentPos);

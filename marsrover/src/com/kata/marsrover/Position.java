@@ -17,28 +17,23 @@ public class Position {
   }
 
   public Position(String posStr) throws PositionException {
-    String[] posArray = getPosArray(posStr);
-    if (!isValidPosArray(posArray)) throw new PositionException(posStr);
+    String[] posArray = getValidPosArray(posStr);
     try {
       this.xPos = Integer.parseInt(posArray[0]);
       this.yPos = Integer.parseInt(posArray[1]);
       this.direction = posArray[2].charAt(0);
-    } catch (Exception e) {
+    } catch (NumberFormatException e) {
       throw new PositionException(posStr);
+
     }
   }
 
-  boolean isValidPosArray(String[] posArray) throws PositionException {
-    if (posArray == null || posArray.length != 3) return false;
-    if (!Position.isValidPositionDirection(posArray[2].charAt(0))) return false;
-    return true;
-  }
-
-  private String[] getPosArray(String posStr) {
-    String[] posArray = posStr.trim().split("\\s+");
+  String[] getValidPosArray(String posStr) throws PositionException {
+    String[] posArray=posStr.trim().split("\\s+");
+    if (posArray == null || posArray.length != 3) throw new PositionException(posStr);
+    if (!isValidPositionDirection(posArray[2].charAt(0))) throw new PositionException(posStr);
     return posArray;
   }
-
 
   public char getDirection() {
     return direction;
@@ -52,7 +47,7 @@ public class Position {
     return yPos;
   }
 
-  public static boolean isValidPositionDirection(char direction){
+  public  boolean isValidPositionDirection(char direction){
     return (direction=='E'||direction=='S'||direction=='W'||direction=='N')?true:false;
   }
 

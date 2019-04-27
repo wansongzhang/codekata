@@ -20,7 +20,6 @@ public class CarTest {
   }
 
 
-
   @Test
   public void testStart_00E_WithCMD_L_GetPos_00N() throws ActionException {
     Position destPos = new Position(0, 0, 'N');
@@ -99,12 +98,14 @@ public class CarTest {
   }
 
   @Test
-  public void testCheckValidCmdStr() throws ActionException {
-    Assert.assertTrue(new Car().isValidActionCmdStr("LRMRMRM"));
-    Assert.assertFalse(new Car().isValidActionCmdStr("LR MRMRM"));
-    Assert.assertFalse(new Car().isValidActionCmdStr("ST"));
+  public void testCheckGetIllegalAction()  {
+    try {
+      new Car(0,0,'E').executeAction('X');
+      Assert.assertTrue(false);
+    } catch (ActionException e) {
+      Assert.assertTrue(true);
+    }
   }
-
 
   @Test
   public void testStart_11N_WithCMD_LMR_GetPos_01N() throws ActionException {
