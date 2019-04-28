@@ -9,7 +9,7 @@ public class CarRAction implements CarAction {
 
   public CarRAction(){}
 
-  public Position execute(Position currentPos){
+  public Position executeFromPos(Position currentPos){
     char direction = currentPos.getDirection();
     switch (direction) {
       case 'E':

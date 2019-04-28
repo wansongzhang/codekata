@@ -1,6 +1,6 @@
 package com.kata.marsrover;
 
-import com.kata.marsrover.action.CarActionFactory;
+import com.kata.marsrover.action.*;
 import com.kata.marsrover.exception.ActionException;
 import com.kata.marsrover.exception.PositionException;
 
@@ -25,32 +25,57 @@ public class Car {
 
 
   public String rover(String cmdLine) throws ActionException {
-    if (checkIsOutOfBoundary(currentPos)) {
-      return generateRipInfo(currentPos);
+    if (checkIsOutOfBoundary(currentPos)) return generateRipInfo(currentPos);
+    char[] actionArray = parserActionArray(cmdLine);
+    try {
+      return executeMoreAction(actionArray).toString();
+    } catch (RipException ripException) {
+      return ripException.getMessage();
     }
-    char[] actionArray = cmdLine.trim().toCharArray();
+  }
+
+  private Position executeMoreAction(char[] actionArray) throws ActionException, RipException {
     for (char action : actionArray) {
-      if (checkRipPosAction(currentPos, action)) continue;
-      Position lastPos = currentPos;
-      currentPos = executeAction(action);
-      if (checkIsOutOfBoundary(currentPos)) {
-        markMapRipInfo(lastPos, action);
-        return generateRipInfo(lastPos);
-      }
+      if (checkRipPosition(currentPos, action)) continue;
+      currentPos = executeOneAction(action);
     }
-    return currentPos.toString();
+    return currentPos;
+  }
+
+  Position executeOneAction(char action) throws ActionException, RipException {
+    Position lastPos = currentPos;
+    currentPos = getCarAction(action).executeFromPos(currentPos);
+    if (checkIsOutOfBoundary(currentPos)) {
+      markMapRipInfo(lastPos, action);
+      throw new RipException(generateRipInfo(lastPos));
+    }
+    return currentPos;
+  }
+
+
+  private char[] parserActionArray(String cmdLine) {
+    return cmdLine.trim().toCharArray();
   }
 
   private String generateRipInfo(Position pos) {
     return pos.toString() + " RIP";
   }
 
-  Position executeAction(char action) throws ActionException {
-    return CarActionFactory.getCarAction(action).execute(currentPos);
+  private CarAction getCarAction(char action) throws ActionException {
+    switch (action) {
+      case 'M':
+        return new CarMAction();
+      case 'L':
+        return new CarLAction();
+      case 'R':
+        return new CarRAction();
+      default:
+        throw new ActionException("unknown action "+action);
+    }
   }
 
-  private boolean checkRipPosAction(Position pos, char action) {
-    return marsMap != null && marsMap.isRipPosAction(new RipPosition(pos, action));
+  private boolean checkRipPosition(Position pos, char action) {
+    return marsMap != null && marsMap.isRipPosition(new RipPosition(pos, action));
   }
 
   private void markMapRipInfo(Position pos, char lastAction) {

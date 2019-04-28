@@ -12,34 +12,34 @@ public class CarRActionTest {
   public void testStart_00E_Get_00S()  {
     Position destPos = new Position(0, 0, 'S');
     Position srcPos = new Position(0, 0, 'E');
-    Assert.assertEquals(destPos.toString(), new CarRAction().execute(srcPos).toString());
+    Assert.assertEquals(destPos.toString(), new CarRAction().executeFromPos(srcPos).toString());
   }
 
   @Test
   public void testStart_00S_Get_00W()  {
     Position destPos = new Position(0, 0, 'W');
     Position srcPos = new Position(0, 0, 'S');
-    Assert.assertEquals(destPos.toString(), new CarRAction().execute(srcPos).toString());
+    Assert.assertEquals(destPos.toString(), new CarRAction().executeFromPos(srcPos).toString());
   }
 
   @Test
   public void testStart_00W_Get_00N()  {
     Position destPos = new Position(0, 0, 'N');
     Position srcPos = new Position(0, 0, 'W');
-    Assert.assertEquals(destPos.toString(), new CarRAction().execute(srcPos).toString());
+    Assert.assertEquals(destPos.toString(), new CarRAction().executeFromPos(srcPos).toString());
   }
 
   @Test
   public void testStart_00N_Get_00E(){
     Position destPos = new Position(0, 0, 'E');
     Position srcPos = new Position(0, 0, 'N');
-    Assert.assertEquals(destPos.toString(), new CarRAction().execute(srcPos).toString());
+    Assert.assertEquals(destPos.toString(), new CarRAction().executeFromPos(srcPos).toString());
   }
 
   @Test
   public void testStartIllegalDirection_GetDefault() {
     Position srcPos = new Position(0, 0, 'T');
-    Assert.assertEquals(srcPos.toString(), new CarRAction().execute(srcPos).toString());
+    Assert.assertEquals(srcPos.toString(), new CarRAction().executeFromPos(srcPos).toString());
   }
 
 
