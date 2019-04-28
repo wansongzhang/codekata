@@ -46,9 +46,9 @@ public class MarsRoverTest {
   }
 
   @Test
-  public void testAll() throws ActionException, PositionException, MapException {
+  public void testReceiveCmd() throws ActionException, PositionException, MapException {
     String inputString="5 5 \n 1 2 N \n LMLMLMLMM \n 3 3 E \n MMM";
-    String actualResult=new MarsRover().readInput(inputString);
+    String actualResult=new MarsRover().receiveCmd(inputString);
     String expectResult="1 3 N\r\n5 3 E RIP\r\n";
     Assert.assertEquals(expectResult,actualResult);
   }

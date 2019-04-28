@@ -26,7 +26,7 @@ public class Car {
 
   public String rover(String cmdLine) throws ActionException {
     if (checkIsOutOfBoundary(currentPos)) {
-      return currentPos.toString() + " RIP";
+      return generateRipInfo(currentPos);
     }
     char[] actionArray = cmdLine.trim().toCharArray();
     for (char action : actionArray) {
@@ -35,10 +35,14 @@ public class Car {
       currentPos = executeAction(action);
       if (checkIsOutOfBoundary(currentPos)) {
         markMapRipInfo(lastPos, action);
-        return lastPos.toString() + " RIP";
+        return generateRipInfo(lastPos);
       }
     }
     return currentPos.toString();
+  }
+
+  private String generateRipInfo(Position pos) {
+    return pos.toString() + " RIP";
   }
 
   Position executeAction(char action) throws ActionException {

@@ -10,8 +10,7 @@ import com.kata.marsrover.exception.PositionException;
 public class MarsRover {
   private MarsMap marsMap;
 
-
-  public String readInput(String inputStr) throws MapException, ActionException, PositionException {
+  public String receiveCmd(String inputStr) throws MapException, ActionException, PositionException {
     String []lineArray=getLineArray(inputStr);
     readMapInfo(lineArray[0]);
     StringBuilder sBuffer=new StringBuilder();
