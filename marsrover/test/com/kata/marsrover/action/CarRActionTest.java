@@ -1,9 +1,8 @@
 package com.kata.marsrover.action;
 
+import com.kata.marsrover.Coordinate;
 import com.kata.marsrover.Position;
-import com.kata.marsrover.exception.ActionException;
 import com.kata.marsrover.exception.PositionException;
-import com.kata.marsrover.exception.RipException;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -39,7 +38,7 @@ public class CarRActionTest {
 
   @Test
   public void testStartIllegalDirection() throws PositionException {
-    Assert.assertEquals("0 0 X", new CarRAction().executeFromPos(new Position(0, 0, 'X')).toString());
+    Assert.assertEquals("0 0 X", new CarRAction().executeFromPos(new Position(new Coordinate(0, 0), 'X')).toString());
   }
 
   private void expectedCarRActionExecute(String startPosStr, String result) throws PositionException {

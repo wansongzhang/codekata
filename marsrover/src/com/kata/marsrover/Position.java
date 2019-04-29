@@ -7,20 +7,18 @@ import com.kata.marsrover.exception.PositionException;
  */
 public class Position {
   private  char direction;
-  private  int xPos;
+  private  Coordinate coordinate;
   private  int yPos;
 
-  public Position(int x, int y, char direction) {
-    this.xPos = x;
-    this.yPos = y;
+  public Position(Coordinate coordinate,char direction) {
+    this.coordinate = coordinate;
     this.direction = direction;
   }
 
   public Position(String posStr) throws PositionException {
     String[] posArray = getValidPosArray(posStr);
     try {
-      this.xPos = Integer.parseInt(posArray[0]);
-      this.yPos = Integer.parseInt(posArray[1]);
+      this.coordinate=new Coordinate(Integer.parseInt(posArray[0]),Integer.parseInt(posArray[1]));
       this.direction = posArray[2].charAt(0);
     } catch (NumberFormatException e) {
       throw new PositionException(posStr);
@@ -34,17 +32,7 @@ public class Position {
     return posArray;
   }
 
-  public char getDirection() {
-    return direction;
-  }
 
-  public int getXPos() {
-    return xPos;
-  }
-
-  public int getYPos() {
-    return yPos;
-  }
 
   boolean isValidPositionDirection(char direction){
     return (direction=='E'||direction=='S'||direction=='W'||direction=='N')?true:false;
@@ -52,10 +40,18 @@ public class Position {
 
 
   public boolean isEquals(Position pos){
-    return (xPos==pos.getXPos()&&yPos==pos.getYPos()&&direction==pos.getDirection());
+    return (coordinate.isEquals(pos.getCoordinate())&&direction==pos.getDirection());
   }
 
   public String toString() {
-    return new StringBuilder().append(xPos).append(" ").append(yPos).append(" ").append(direction).toString();
+    return new StringBuilder().append(coordinate.toString()).append(" ").append(direction).toString();
   }
+
+  public Coordinate getCoordinate() {
+    return coordinate;
+  }
+  public char getDirection() {
+    return direction;
+  }
+
 }

@@ -29,8 +29,8 @@ public class MarsMap {
     }
   }
 
-  public boolean isInBoundary(int xPos, int yPos) {
-    return (xPos >= 0 && xPos <= xBoundary && yPos >= 0 && yPos <= yBoundary);
+  public boolean isInBoundary(Coordinate coordinate) {
+    return (coordinate.getX() >= 0 && coordinate.getX() <= xBoundary && coordinate.getY() >= 0 && coordinate.getY() <= yBoundary);
   }
 
   public int getXBoundary() {

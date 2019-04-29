@@ -62,7 +62,7 @@ public class CarTest {
   @Test
   public void testCarRoverWithExistRipMapInfoIgnoreAction() throws MapException, PositionException, ActionException {
     MarsMap marsMap=new MarsMap(5,5);
-    marsMap.addRipPosition(new RipPosition(new Position(5, 5, 'N'), 'M'));
+    marsMap.addRipPosition(new RipPosition(new Position("5 5 N"), 'M'));
     expectedCarRoverCmdWithMap(marsMap,"5 5 N","MLM","4 5 W");
   }
 

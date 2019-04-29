@@ -1,6 +1,5 @@
 package com.kata.marsrover;
 
-import com.kata.marsrover.exception.ActionException;
 import com.kata.marsrover.exception.PositionException;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -17,12 +16,12 @@ public class PositionTest {
   public ExpectedException thrown = ExpectedException.none();
   @Test
   public void testCheckParserRightPosition() throws PositionException {
-    Assert.assertEquals(new Position(1, 1, 'S').toString(), new Position("1 1 S").toString());
+    Assert.assertEquals(new Position(new Coordinate(1, 1),'S').toString(), new Position("1 1 S").toString());
   }
 
   @Test
   public void testCheckParserRightPositionWithMoreSpace() throws PositionException {
-    Assert.assertEquals(new Position(1, 1, 'S').toString(), new Position("1   1  S").toString());
+    Assert.assertEquals(new Position(new Coordinate(1, 1),'S').toString(), new Position("1   1  S").toString());
   }
 
   @Test

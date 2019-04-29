@@ -1,5 +1,6 @@
 package com.kata.marsrover.action;
 
+import com.kata.marsrover.Coordinate;
 import com.kata.marsrover.Position;
 
 /**
@@ -13,13 +14,13 @@ public class CarRAction implements CarAction {
     char direction = currentPos.getDirection();
     switch (direction) {
       case 'E':
-        return new Position(currentPos.getXPos(), currentPos.getYPos(), 'S');
+        return new Position(currentPos.getCoordinate(), 'S');
       case 'S':
-        return new Position(currentPos.getXPos(), currentPos.getYPos(), 'W');
+        return new Position(currentPos.getCoordinate(), 'W');
       case 'W':
-        return new Position(currentPos.getXPos(), currentPos.getYPos(), 'N');
+        return new Position(currentPos.getCoordinate(), 'N');
       case 'N':
-        return new Position(currentPos.getXPos(), currentPos.getYPos(), 'E');
+        return new Position(currentPos.getCoordinate(), 'E');
       default:
         return currentPos;
     }

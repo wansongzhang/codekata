@@ -1,7 +1,7 @@
 package com.kata.marsrover;
 
-import com.kata.marsrover.exception.ActionException;
 import com.kata.marsrover.exception.MapException;
+import com.kata.marsrover.exception.PositionException;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -29,19 +29,19 @@ public class MarsMapTest {
   @Test
   public void testCheck11_isInBoundary_map_55() {
     MarsMap map=new MarsMap(5,5);
-    Assert.assertEquals(true, map.isInBoundary(1, 1));
+    Assert.assertEquals(true, map.isInBoundary(new Coordinate(1, 1)));
   }
 
   @Test
   public void testCheck61_isOutBoundary_map_55() {
     MarsMap map=new MarsMap(5,5);
-    Assert.assertEquals(false, map.isInBoundary(6, 1));
+    Assert.assertEquals(false, map.isInBoundary(new Coordinate(6, 1)));
   }
 
   @Test
-  public void testCheckRipPosition() {
+  public void testCheckRipPosition() throws PositionException {
     MarsMap map=new MarsMap(5,5);
-    RipPosition ripPos=new RipPosition(new Position(5,5,'N'),'M');
+    RipPosition ripPos=new RipPosition(new Position("5 5 N"),'M');
     map.addRipPosition(ripPos);
     Assert.assertEquals(true, map.isRipPosition(ripPos));
   }

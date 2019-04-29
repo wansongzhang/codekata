@@ -14,7 +14,7 @@ public class Car {
   private Position startPos, currentPos;
 
   public Car(int x, int y, char direction) {
-    startPos = new Position(x, y, direction);
+    startPos = new Position(new Coordinate(x, y),direction);
     currentPos = startPos;
   }
 
@@ -84,6 +84,6 @@ public class Car {
   }
 
   private boolean checkIsOutOfBoundary(Position currentPos) {
-    return marsMap != null && !marsMap.isInBoundary(currentPos.getXPos(), currentPos.getYPos());
+    return marsMap != null && !marsMap.isInBoundary(currentPos.getCoordinate());
   }
 }

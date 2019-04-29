@@ -1,5 +1,6 @@
 package com.kata.marsrover.action;
 
+import com.kata.marsrover.Coordinate;
 import com.kata.marsrover.Position;
 import com.kata.marsrover.exception.PositionException;
 import org.junit.Assert;
@@ -32,7 +33,7 @@ public class CarLActionTest {
 
   @Test
   public void testStartIllegalDirection() throws PositionException {
-    Assert.assertEquals("0 0 X", new CarLAction().executeFromPos(new Position(0, 0, 'X')).toString());
+    Assert.assertEquals("0 0 X", new CarLAction().executeFromPos(new Position(new Coordinate(0,0),'X')).toString());
   }
 
   private void expectedCarLActionExecute(String startPosStr, String result) throws PositionException {
