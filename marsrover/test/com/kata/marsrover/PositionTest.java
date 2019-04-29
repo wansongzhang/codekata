@@ -26,19 +26,28 @@ public class PositionTest {
   }
 
   @Test
-  public void testCheckParserIllegalPosition() throws PositionException{
+  public void testCheckParserIllegalPositionX() throws PositionException{
+    expectedParserIllegalPosition("X 1 S");
+  }
 
+  @Test
+  public void testCheckParserIllegalPositionY() throws PositionException{
+    expectedParserIllegalPosition("1 Y S");
+  }
+
+  @Test
+  public void testCheckParserIllegalPositionDirection() throws PositionException {
+    expectedParserIllegalPosition("1 2 R");
+  }
+
+  @Test
+  public void testCheckParserIllegalPosition() throws PositionException {
+    expectedParserIllegalPosition("1 2 3 R");
+  }
+
+  private void expectedParserIllegalPosition(String posStr) throws PositionException {
     thrown.expect(PositionException.class);
-    thrown.expectMessage("121R");
-    new Position("121R");
-
-
-    thrown.expect(PositionException.class);
-    thrown.expectMessage("1 S 3");
-    new Position("1 S 3");
-
-    thrown.expect(PositionException.class);
-    thrown.expectMessage("1 T S");
-    new Position("1 T S");
+    thrown.expectMessage(posStr);
+    new Position(posStr);
   }
 }

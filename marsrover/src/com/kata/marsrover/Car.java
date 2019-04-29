@@ -3,6 +3,7 @@ package com.kata.marsrover;
 import com.kata.marsrover.action.*;
 import com.kata.marsrover.exception.ActionException;
 import com.kata.marsrover.exception.PositionException;
+import com.kata.marsrover.exception.RipException;
 
 /**
  * Created by sloanzhang on 2019/4/26.
@@ -24,8 +25,8 @@ public class Car {
   }
 
 
-  public String rover(String cmdLine) throws ActionException {
-    if (checkIsOutOfBoundary(currentPos)) return generateRipInfo(currentPos);
+  public String rover(String cmdLine) throws ActionException, PositionException {
+    if (checkIsOutOfBoundary(startPos)) throw new PositionException(startPos.toString());
     char[] actionArray = parserActionArray(cmdLine);
     try {
       return executeMoreAction(actionArray).toString();

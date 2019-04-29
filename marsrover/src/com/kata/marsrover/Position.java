@@ -24,7 +24,6 @@ public class Position {
       this.direction = posArray[2].charAt(0);
     } catch (NumberFormatException e) {
       throw new PositionException(posStr);
-
     }
   }
 
@@ -47,12 +46,12 @@ public class Position {
     return yPos;
   }
 
-  public  boolean isValidPositionDirection(char direction){
+  boolean isValidPositionDirection(char direction){
     return (direction=='E'||direction=='S'||direction=='W'||direction=='N')?true:false;
   }
 
 
-  public boolean equals(Position pos){
+  public boolean isEquals(Position pos){
     return (xPos==pos.getXPos()&&yPos==pos.getYPos()&&direction==pos.getDirection());
   }
 

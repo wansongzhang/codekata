@@ -31,4 +31,8 @@ public class MarsRover {
   String sendCarWaitResult(String posStr, String cmdStr) throws PositionException, ActionException {
     return new Car(posStr,marsMap).rover(cmdStr);
   }
+
+  public void setMarsMap(MarsMap marsMap) {
+    this.marsMap = marsMap;
+  }
 }

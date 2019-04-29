@@ -11,7 +11,7 @@ public class RipPosition extends Position {
     this.lastAction=lastAction;
   }
 
-  public boolean equals(RipPosition ripPos){
-    return (super.equals(ripPos)&&lastAction==ripPos.lastAction);
+  public boolean isEquals(RipPosition ripPos){
+    return (super.isEquals(ripPos)&&lastAction==ripPos.lastAction);
   }
 }

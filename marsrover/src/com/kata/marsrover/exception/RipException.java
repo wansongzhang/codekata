@@ -1,4 +1,4 @@
-package com.kata.marsrover;
+package com.kata.marsrover.exception;
 
 /**
  * Created by sloanzhang on 2019/4/28.

@@ -14,35 +14,15 @@ public class MarsRoverTest {
 
   @Test
   public void testSendOneCar() throws MapException, PositionException, ActionException {
-    MarsRover marsRover = new MarsRover();
-    marsRover.readMapInfo("5 5");
-    String posStr = "5 5 N";
-    String cmdStr = "M";
-    String result = marsRover.sendCarWaitResult(posStr, cmdStr);
-    Assert.assertEquals("5 5 N RIP", result);
+    expectedCarRover(new MarsMap("5 5"),"5 5 N","M","5 5 N RIP");
   }
-
 
   @Test
   public void testSendMoreCar() throws MapException, PositionException, ActionException {
-    MarsRover marsRover = new MarsRover();
-    marsRover.readMapInfo("5 5");
-    String posStr = "5 5 N";
-    String cmdStr = "M";
-    String result = marsRover.sendCarWaitResult(posStr, cmdStr);
-    Assert.assertEquals("5 5 N RIP", result);
-
-    cmdStr = "M";
-    result = marsRover.sendCarWaitResult(posStr, cmdStr);
-    Assert.assertEquals("5 5 N", result);
-
-    cmdStr = "MLLM";
-    result = marsRover.sendCarWaitResult(posStr, cmdStr);
-    Assert.assertEquals("5 4 S", result);
-
-    cmdStr = "RMM";
-    result = marsRover.sendCarWaitResult(posStr, cmdStr);
-    Assert.assertEquals("5 5 E RIP", result);
+    MarsMap map = new MarsMap("5 5");
+    expectedCarRover(map, "5 5 N", "M", "5 5 N RIP");
+    expectedCarRover(map,"5 5 N","MLLM","5 4 S");
+    expectedCarRover(map, "5 5 N", "RMM", "5 5 E RIP");
   }
 
   @Test
@@ -53,6 +33,12 @@ public class MarsRoverTest {
     Assert.assertEquals(expectResult,actualResult);
   }
 
+  private void expectedCarRover(MarsMap marsMap,String posStr,String cmdStr,String expectedStr) throws MapException, PositionException, ActionException {
+    MarsRover marsRover = new MarsRover();
+    marsRover.setMarsMap(marsMap);
+    String result = marsRover.sendCarWaitResult(posStr, cmdStr);
+    Assert.assertEquals(expectedStr, result);
+  }
 
 
 }

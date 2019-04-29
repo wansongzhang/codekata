@@ -47,7 +47,7 @@ public class MarsMap {
 
   public boolean isRipPosition(RipPosition ripPosition) {
     for (RipPosition ripPos : ripPositionList) {
-      if (ripPos.equals(ripPosition))
+      if (ripPos.isEquals(ripPosition))
         return true;
     }
     return false;
